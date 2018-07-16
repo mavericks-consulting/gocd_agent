@@ -91,7 +91,7 @@
 - name: Copy secrets from S3
   become: yes
   become_user: "{{ sansible_gocd_agent_user }}"
-  s3:
+  aws_s3:
     bucket: "{{ item.s3_path | regex_replace('^s3://([^/]+)/.*', '\\1') }}"
     object: "{{ item.s3_path | regex_replace('^s3://[^/]+(/.*)', '\\1') }}"
     dest: "{{ item.local_path }}"
